@@ -10,7 +10,10 @@ const search = searchQuery =>
 // NYTimes News API component // 
 class News extends Component {
     constructor() {
+
+
         this.state = {
+            /* The '.' after the [] is giving you an error. */
             articles: [].
         };
     }
@@ -19,14 +22,33 @@ class News extends Component {
 
         fetch(search)
         .then(res => {
+            /* What is your reason for passing the data to another .then fucntion as opposed to just doing the mapping here? */
             return res.json();
+
         }).then(data => {
+            /* What's your goal here? What does 'data.res' give you if you console.log it? */
+
+            /* Your map has a bug in it. This is how it should look:
+
+            let article = data.res.map((article) => {
+                return(
+                    <div key={article.results}>
+                    </div>
+                )
+            })
+
+            BUT THIS IS NOT VERY KOSHER!!!
+            What you want to do here is setState ONLY! DO NOT RETURN JSX IN componentDidMount() EVER. That's render()'s job...
+            */
+
             let articles = data.res.map(article) => {
                 return(
                     <div key={article.results}>
                     </div>
                 )
             })
+
+            /* This should be the only thing in componentDidMount() */
             this.setState({articles: articles});
             console.log("state". this.state.articles);
         })
@@ -36,7 +58,17 @@ class News extends Component {
         return(
            <div className="container2">
                 <div className="container1">
-                {this.state.articles}
+                {/* This is where the map belongs:
+                
+                this.state.articles.map((article) => {
+                    return(
+                        <div key={article.id}>
+                            <h1>Article info can go here...</h1>
+                        </div>
+                    )
+                })
+            
+            */}
                 </div>
             </div>
         )
