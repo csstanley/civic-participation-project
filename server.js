@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 // Connect to the Mongo DB //
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/civicdb");
 
-// Start the API server //
+// Start the server //
 app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  console.log(`🌎  ==> Server now listening on PORT ${PORT}!`);
 });
