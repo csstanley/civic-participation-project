@@ -12,27 +12,32 @@ export default class News extends Component {
     };
 
     componentDidMount() {
-
-        axios.get({
+        console.log("mounting!!");
+        
+        axios({
+            method: 'get',
             url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
-            qs: { 'api-key': "db1a7857294b42c296d0280bcca5ae36" },
-        }, function (response) {
-            // body = JSON.parse(response);
-            console.log(response);
-            console.log("This works!");
+            params: { 'api-key': "db1a7857294b42c296d0280bcca5ae36" },
+        }
+    ).then(function (response) {
+        // body = JSON.parse(response);
+        console.log(response);
+        console.log("This works!");
 
 
-            // this.setState({ articles: articles });
-            // console.log("state".this.state.articles);
+        // this.setState({ articles: articles });
+        // console.log("state".this.state.articles);
 
-        })
+    })
             
     }
 
     render() {
         console.log("Rendering!");
+        
         return (
             <div className="container2">
+            
                 <div className="container1">
                     {this.state.articles.map((article) => {
                         return (
