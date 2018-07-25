@@ -13,7 +13,7 @@ export default class Voting extends Component {
         axios({
             method: 'get',
             url:  "https://cors-anywhere.herokuapp.com/" + "https://api.propublica.org/congress/v1/senate/votes/recent.json?api_key=bods0ZJmBorBIEe01JJfBZTlmKo0liFs2hEHf0GR", 
-            headers: 'config'
+            headers: {'header': 'XMLHttpRequest'}
         }
 
         ).then((res) => {
