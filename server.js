@@ -15,24 +15,11 @@ app.use(bodyParser.json());
 
 app.use(express.static("client/build"));
 
-
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', "*");
-//   res.header('Access-COntrol-Allow-Methods', 'GET, PUT, POST, DELETE');
-//   res.header('Access-COntrol-Allow-Headers', 'Content-Type');
-//   next()
-// })
-
-// ROUTES // 
-// app.use(routes);
-
-// Connect to the Mongo DB //
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/civicdb");
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(_dirname + 'client/build/index.html'))
+})
 
 // Start the server //
 app.listen(PORT, function() {
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(_dirname + '/index.html'))
-})
   console.log(`🌎  ==> Server now listening on PORT ${PORT}!`);
 });
