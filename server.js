@@ -15,6 +15,14 @@ app.use(bodyParser.json());
 
 app.use(express.static("client/build"));
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin, X-Requested-With')
+
+  next();
+})
+
 app.get('/*', function(req, res) {
   console.log(__dirname);
   res.sendFile(path.join(__dirname + '/client/build/index.html'))
