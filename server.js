@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static("client/build"));
 
 app.get('/*', function(req, res) {
+  console.log(__dirname);
   res.sendFile(path.join(__dirname + 'client/build/index.html'))
 })
 
